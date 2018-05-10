@@ -1,4 +1,4 @@
-# **Project Forum**
+# **Project for Master**
 Example of simple CRUD web application with Spring Framework and Thymeleaf. 
 
 
@@ -30,6 +30,5 @@ The connection settings are in src/main/resources/application.properties
     spring.datasource.username=USERNAME
     spring.datasource.password=PASSWORD
 
-### Diagram
-![Sorry, error loading image of diagram](http://i.imgur.com/1W1xaBi.png)
+
 
