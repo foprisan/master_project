@@ -83,13 +83,13 @@
             <div class="col s12">
                 <div class="row">
                     <div class="col s12">
-                        <h4 th:text="#{recent.posts}">Recent postss</h4>
+                        <h4 th:text="#{recent.posts}">Recent posts</h4>
                         <div class="divider"></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <div class="row" th:each="post : ${posts}">
+                        <div class="row" th:each="post,postStat : ${posts}" th:unless="${postStat.index>2}">
                             <div class="col s12">
                                 <div class="section">
                                     <a th:href="@{/topic/} + ${post.topic.id}">

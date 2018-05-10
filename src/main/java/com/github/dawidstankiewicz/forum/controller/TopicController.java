@@ -5,6 +5,8 @@ package com.github.dawidstankiewicz.forum.controller;
 
 import com.github.dawidstankiewicz.forum.entity.Topic;
 import com.github.dawidstankiewicz.forum.service.SectionService;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.dawidstankiewicz.forum.controller.form.NewPostForm;
 import com.github.dawidstankiewicz.forum.controller.form.NewTopicForm;
+import com.github.dawidstankiewicz.forum.controller.form.PostEditForm;
+import com.github.dawidstankiewicz.forum.controller.form.TopicEditForm;
 import com.github.dawidstankiewicz.forum.entity.Post;
 import com.github.dawidstankiewicz.forum.service.PostService;
 import com.github.dawidstankiewicz.forum.service.TopicService;
@@ -124,5 +128,39 @@ public class TopicController {
         model.addFlashAttribute("message", "topic.successfully.deleted");
         return "redirect:/section/" + topic.getSection().getId();
     }
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String editTopic(@PathVariable int id, Authentication authentication,Model model) {
+        Topic topic = topicService.findOne(id);
+        
+        if (topic == null) {
+            return "redirect:/";
+        }
+        if (!authentication.getName().equals(topic.getUser().getUsername())) {
+            return "redirect:/topic/" + id;
+        }
+        model.addAttribute("topic", topic);
+        model.addAttribute("topicEditForm", new TopicEditForm());
+        
+        
+        
+        return "topic_edit_form";
+              
+    }
     
+    @RequestMapping(value="/edit/{id}",method=RequestMethod.POST)
+	public String edit(HttpServletRequest request,@PathVariable int id, Authentication authentication,RedirectAttributes model){
+    	Topic topic = topicService.findOne(id);
+        if (topic == null || authentication == null || authentication.getName() == null
+                || !authentication.getName().equals(topic.getUser().getUsername())) {
+            return "redirect:/";
+        }
+        
+       System.out.println("topic PST");
+       	topic.setTitle(request.getParameter("title"));
+        topic.setContent(request.getParameter("content"));
+        topicService.save(topic);
+        model.addFlashAttribute("message", "topic.successfully.edited");
+        return "redirect:/topic/" + topic.getId();
+    
+	} 
 }
