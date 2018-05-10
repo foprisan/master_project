@@ -1,4 +1,4 @@
-# **Project Forum**
+# **Project Master**
 Example of simple CRUD web application with Spring Framework and Thymeleaf. 
 
 
