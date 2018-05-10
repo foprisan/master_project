@@ -1,0 +1,21 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+footer {
+	flex: 1 0 auto;
+}
+
+nav {
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+body>.container {
+	padding-top: 50px;
+}
+.bold {
+	font-weight: bold;
+}
