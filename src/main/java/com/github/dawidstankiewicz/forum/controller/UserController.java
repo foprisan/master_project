@@ -216,8 +216,9 @@ public class UserController {
         user.getInfo().setName(request.getParameter("name"));
         user.getInfo().setLastName(request.getParameter("lastName"));
         user.getInfo().setCity(request.getParameter("city"));
-        SimpleDateFormat smdtf= new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat smdtf= new SimpleDateFormat("yyyy-MM-dd");
         try {
+        	System.out.println("birthday"+request.getParameter("birthday"));
 			user.getInfo().setBirthday(smdtf.parse(request.getParameter("birthday")));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
