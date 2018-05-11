@@ -1,5 +1,6 @@
 package com.github.dawidstankiewicz.forum.tools;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +50,17 @@ public class Recommender {
 	
 	public HashMap<Integer,Double> getRecommendations () {
 		
+		List<List<String>> dataset= new ArrayList<List<String>>();
+	
+		//build dataset
+		for (Integer key : projects.keySet()){
+			ArrayList <String> terms= new ArrayList<String>(projects.get(key));
+			dataset.add(terms);
+		}
 		
+		//compute tf-idf for each term in target. 
+		
+		for (String term : this.target)
 		return this.result;
 	}
 }
