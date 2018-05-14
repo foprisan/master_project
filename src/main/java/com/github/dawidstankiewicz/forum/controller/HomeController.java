@@ -39,8 +39,5 @@ public class HomeController {
         model.addAttribute("posts", postService.findRecent());
         return "home";
     }
-    @RequestMapping(value = "/skill/new", method = RequestMethod.GET) 
-    public String editSkill(Model model){
-    	model.addAttribute("skills",skillService.findAll());
-    }
+
 }
