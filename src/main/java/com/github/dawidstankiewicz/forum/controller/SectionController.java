@@ -107,7 +107,10 @@ public class SectionController {
     	ArrayList<String> userPref= new ArrayList<String>(Arrays.asList(userService.findByUsername(authentication.getName()).getInfo().getAboutMe().split(" |\\.|,")));
     	Recommender recommender= new Recommender(0, projects,userPref);
     	HashMapSort hsort = new HashMapSort(recommender.getRecommendations());
+    	HashMap<Integer, HashMap<String, Double>> termsTFIDF=recommender.getTFIDFforProjectTerms();
+    	 System.out.println("termtfidf Map: " + Arrays.toString(termsTFIDF.entrySet().toArray()));
     	hsort.sortHashMap();
     	return "redirect:/section/" + sectionService.findByName("Projects").getId();
     }
+    
 }

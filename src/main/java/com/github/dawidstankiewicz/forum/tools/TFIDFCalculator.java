@@ -14,8 +14,13 @@ public class TFIDFCalculator {
             if (term.equalsIgnoreCase(word))
                 result++;
         }
-        return result / doc.size();
-    }
+        if (result>0){
+        	return 1 +Math.log(result);
+            
+        }else {
+        	return 0;
+        }
+     }
 
     /**
      * @param docs list of list of strings represents the dataset
