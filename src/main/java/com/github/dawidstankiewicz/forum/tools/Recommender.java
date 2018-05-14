@@ -51,7 +51,7 @@ public class Recommender {
 	public HashMap<Integer,Double> getRecommendations () {
 		
 		List<List<String>> dataset= new ArrayList<List<String>>();
-	
+		projects.put(99999999, this.target);
 		//build dataset
 		for (Integer key : projects.keySet()){
 			ArrayList <String> terms= new ArrayList<String>(projects.get(key));
@@ -70,8 +70,21 @@ public class Recommender {
 				
 				termTFIDF.put(term,TFIDFCalculator.tfIdf(doc, dataset, term));
 			}
+			
 			allResultsForTopicsByTerms.put(projectId, termTFIDF);
+			
+		
 		}
-		return this.result;
+		HashMap<String,Double> termTFIDFforTarget=allResultsForTopicsByTerms.get(99999999);
+		for (Integer projectId : projects.keySet()){
+			HashMap <String,Double> termTFIDFforProject=allResultsForTopicsByTerms.get(projectId);
+			double resultCalc=0;
+			for (String term : this.target) {
+				
+				resultCalc+=termTFIDFforProject.get(term) * termTFIDFforTarget.get(term);
+			}
+			this.result.put(projectId, resultCalc);
+		}
+		return this.result; 
 	}
 }

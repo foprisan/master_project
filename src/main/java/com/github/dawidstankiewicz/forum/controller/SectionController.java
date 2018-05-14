@@ -4,6 +4,13 @@
 package com.github.dawidstankiewicz.forum.controller;
 
 import com.github.dawidstankiewicz.forum.service.SectionService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +27,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.github.dawidstankiewicz.forum.controller.form.NewSectionForm;
 import com.github.dawidstankiewicz.forum.entity.Role;
 import com.github.dawidstankiewicz.forum.entity.Section;
+import com.github.dawidstankiewicz.forum.entity.Topic;
 import com.github.dawidstankiewicz.forum.entity.User;
 import com.github.dawidstankiewicz.forum.service.RoleService;
 import com.github.dawidstankiewicz.forum.service.TopicService;
 import com.github.dawidstankiewicz.forum.service.UserService;
+import com.github.dawidstankiewicz.forum.tools.HashMapSort;
+import com.github.dawidstankiewicz.forum.tools.Recommender;
 
 
 @Controller
@@ -86,5 +96,18 @@ public class SectionController {
         model.addFlashAttribute("message", "section.successfully.deleted");
         return "redirect:/home";
     }
-    
+    @RequestMapping(value = "/{id}/recommend", method = RequestMethod.GET)
+    public String recommendProjects(Authentication authentication,RedirectAttributes model){
+    	Set<Topic> topics=topicService.findBySection(sectionService.findByName("Projects").getId());
+    	HashMap<Integer,List<String>> projects= new HashMap<Integer,List<String>>();
+    	for (Topic topic: topics){
+    		ArrayList<String> topicContent= new ArrayList<String>(Arrays.asList(topic.getContent().split(" |\\.|,")));
+    		projects.put(topic.getId(), topicContent);
+    	}
+    	ArrayList<String> userPref= new ArrayList<String>(Arrays.asList(userService.findByUsername(authentication.getName()).getInfo().getAboutMe().split(" |\\.|,")));
+    	Recommender recommender= new Recommender(0, projects,userPref);
+    	HashMapSort hsort = new HashMapSort(recommender.getRecommendations());
+    	hsort.sortHashMap();
+    	return "redirect:/section/" + sectionService.findByName("Projects").getId();
+    }
 }

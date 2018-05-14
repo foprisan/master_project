@@ -19,7 +19,7 @@
                         <p th:text="${section.description}"></p>
                         <a sec:authorize="hasAnyAuthority('ADMIN', 'HEAD_ADMIN')" th:href="@{/section/delete/} + ${section.id}"
                             th:text="#{page.section.delete.section}" class="waves-effect waves-light btn"></a>
-                        <a sec:authorize="hasAnyAuthority('USER')" th:if="${section.name == 'Projects' }" th:href="@{/recommend}" th:text="#{page.section.recommend}"
+                        <a sec:authorize="hasAnyAuthority('USER')" th:if="${section.name == 'Projects' }" th:href="@{/section/{id}/recommend(id=${section.id})}" th:text="#{page.section.recommend}"
                                     class="right waves-effect waves-light btn"></a>
                         <a sec:authorize="hasAnyAuthority('USER')" th:if="${section.name != 'Projects'}"  th:href="@{/topic/new}" th:text="#{page.section.new.topic}"
                                     class="right waves-effect waves-light btn"></a>    
