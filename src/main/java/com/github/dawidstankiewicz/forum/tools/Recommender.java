@@ -61,15 +61,18 @@ public class Recommender {
 		//store results : integer : id of the topic, and for each topic, store a hashmap with the term and it s tf-idf
 		HashMap<Integer,HashMap<String,Double>> allResultsForTopicsByTerms =new  HashMap<Integer,HashMap<String,Double>>();
 		for (Integer projectId : projects.keySet()) {
+			System.out.println("on project " + projectId);
 			HashMap<String,Double> termTFIDF = new HashMap <String,Double>();
 			ArrayList<String> doc= new ArrayList<String>(projects.get(projectId));
-			for (String term:this.target){
+			for (String term:projects.get(projectId)){
 				
 				
 				termTFIDF.put(term,TFIDFCalculator.tfIdf(doc, dataset, term));
 			}
 			
 			allResultsForTopicsByTerms.put(projectId, termTFIDF);
+			
+		
 		}
 		return allResultsForTopicsByTerms;
 	}
@@ -88,9 +91,10 @@ public class Recommender {
 		//store results : integer : id of the topic, and for each topic, store a hashmap with the term and it s tf-idf
 		HashMap<Integer,HashMap<String,Double>> allResultsForTopicsByTerms =new  HashMap<Integer,HashMap<String,Double>>();
 		for (Integer projectId : projects.keySet()) {
+			System.out.println("on project " + projectId);
 			HashMap<String,Double> termTFIDF = new HashMap <String,Double>();
 			ArrayList<String> doc= new ArrayList<String>(projects.get(projectId));
-			for (String term:this.target){
+			for (String term:projects.get(projectId)){
 				
 				
 				termTFIDF.put(term,TFIDFCalculator.tfIdf(doc, dataset, term));
@@ -105,8 +109,16 @@ public class Recommender {
 			HashMap <String,Double> termTFIDFforProject=allResultsForTopicsByTerms.get(projectId);
 			double resultCalc=0;
 			for (String term : this.target) {
+				double result1=0;
+				if (termTFIDFforProject.get(term)!=null){
+					result1=termTFIDFforProject.get(term);
+				}
+				double result2=0;
+				if (termTFIDFforTarget.get(term)!=null){
+					result2=termTFIDFforTarget.get(term);;
+				}
 				
-				resultCalc+=termTFIDFforProject.get(term) * termTFIDFforTarget.get(term);
+				resultCalc+= result1* result2;
 			}
 			this.result.put(projectId, resultCalc);
 		}
