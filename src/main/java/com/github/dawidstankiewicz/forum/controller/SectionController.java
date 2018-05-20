@@ -113,8 +113,9 @@ public class SectionController {
     	return "redirect:/section/" + sectionService.findByName("Projects").getId();
     }
     @RequestMapping(value = "chat", method = RequestMethod.GET)
-    public String getChat(Model model) {
-
+    public String getChat(Authentication authentication,Model model) {
+    	User user = userService.findByUsername(authentication.getName());
+    	 model.addAttribute("user",user);
         return "chat";
     }
 }

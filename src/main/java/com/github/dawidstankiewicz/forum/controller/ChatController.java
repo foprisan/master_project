@@ -22,9 +22,21 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    	
         return chatMessage;
     }
-
+    
+    @MessageMapping("/chat.chatbotSendMessage")
+    @SendTo("/topic/public")
+    public ChatMessage sendMessageChatBot(@Payload ChatMessage chatMessage) {
+    	ChatMessage cm=new ChatMessage();
+    	cm.setType(ChatMessage.MessageType.CHAT);
+    	cm.setSender("chatbot");
+    	cm.setContent("Hello, i am chatbot");
+        return cm;
+    }
+    
+    
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,

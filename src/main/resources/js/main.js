@@ -41,7 +41,10 @@ function onConnected() {
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
-
+    stompClient.send("/app/chat.addUser",
+        {},
+        JSON.stringify({sender: "chatbot", type: 'JOIN'})
+    )
     connectingElement.classList.add('hidden');
 }
 

@@ -15,7 +15,7 @@ public class ChatMessage {
     public enum MessageType {
         CHAT,
         JOIN,
-        LEAVE
+        LEAVE,INITIAL_JOIN
     }
 
     public MessageType getType() {

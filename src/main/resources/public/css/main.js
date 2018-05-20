@@ -18,7 +18,7 @@ var colors = [
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
-
+    console.log(5 + 6);
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -41,7 +41,10 @@ function onConnected() {
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
-
+    stompClient.send("/app/chat.addUser",
+        {},
+        JSON.stringify({sender: "chatbot", type: 'JOIN'})
+    )
     connectingElement.classList.add('hidden');
 }
 
@@ -63,6 +66,10 @@ function sendMessage(event) {
         };
 
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        if (chatMessage.sender != "chatbot" ){
+        	
+        	stompClient.send("/app/chat.chatbotSendMessage",{},JSON.stringify(chatMessage));
+        }
         messageInput.value = '';
     }
     event.preventDefault();
@@ -118,4 +125,13 @@ function getAvatarColor(messageSender) {
 }
 
 usernameForm.addEventListener('submit', connect, true)
+
 messageForm.addEventListener('submit', sendMessage, true)
+
+
+
+
+
+
+ 
+ 
