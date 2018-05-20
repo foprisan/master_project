@@ -112,5 +112,9 @@ public class SectionController {
     	hsort.sortHashMap();
     	return "redirect:/section/" + sectionService.findByName("Projects").getId();
     }
-    
+    @RequestMapping(value = "chat", method = RequestMethod.GET)
+    public String getChat(Model model) {
+
+        return "chat";
+    }
 }
