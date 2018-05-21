@@ -558,7 +558,7 @@ public class PandorabotsAPI {
 		String response = Request.Post(uri).bodyForm(params).execute()
 				.returnContent().asString();
 		JSONObject jObj = new JSONObject(response);
-		sessionId = jObj.getString("sessionid");
+		
 		JSONArray jArray = jObj.getJSONArray("responses");
 		String responses = "";
 		for (int i = 0; i < jArray.length(); i++) {
