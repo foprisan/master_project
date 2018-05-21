@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+  <!-- insert your AIML categories here -->
+  
+<category><pattern>I want to apply for a project </pattern>
+<think><set name="topic">application</set></think>
+<template>Sure. You will need to pass some tests first for your <set name="topic">application</set></template>
+</category>
+<topic name ="application">
+<category><pattern>WHAT ARE THE TESTS</pattern>
+<template>The tests are : <bot name="interviewtopics"/></template>
+</category>
+
+<category><pattern>I want to take the <set>interviewtopics</set> test</pattern>
+<template>Alright. The test for <set name="interviewsubject"><star/></set> contains 
+<condition name="interviewsubject">
+    <li value="java"><map name="javaquestions">numberofq</map></li>
+    <li> I am not able to test you in that subject just yet</li>
+</condition> questions. Do you want to start?
+</template>
+</category>
+<category>
+    <pattern>YES</pattern>
+    <that>Do you want to start</that>
+    <think><set name="questionnumber">1</set></think>
+    <template><srai>WHAT IS QUESTION NUMBER 1</srai></template>
+</category>
+<category><pattern>WHAT IS QUESTION NUMBER <set>number</set></pattern>
+<template><srai> GIVE ME THE <star/> QUESTION</srai></template>
+</category>  
+
+<category><pattern>GIVE ME THE <set>number</set> QUESTION</pattern>
+<template>
+    <think ><set name="questionnumber"><star/></set></think>
+<condition name="interviewsubject">
+    <li value="java"><map name="javaquestions"><get name="questionnumber"></get></map></li>
+    <li> I am not able to test you in that subject just yet</li>
+</condition>
+</template>
+</category>
+
+<category>
+    <pattern>JAVA IS A PROGRAMMING LANGUAGE</pattern>
+        <that>WHAT IS JAVA</that>
+    	<topic>APPLICATION</topic>
+    <template>
+        The anwser is correct !
+     <think><set name="questionnumber"><map name="successor"><get name ="questionnumber"></get></map></set></think>   
+    <srai>GIVE ME THE <get name="questionnumber"></get> QUESTION</srai>
+    </template>
+</category>
+<category>
+    <pattern>JAVA IS A ^</pattern>
+       <that>WHAT IS JAVA</that>
+    <template>
+        The anwser is false !
+        
+    </template>
+</category>
+</topic>
+
+
+
+</aiml>

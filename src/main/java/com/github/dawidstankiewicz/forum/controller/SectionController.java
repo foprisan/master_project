@@ -98,7 +98,7 @@ public class SectionController {
         return "redirect:/home";
     }
     @RequestMapping(value = "/{id}/recommend", method = RequestMethod.GET)
-    public String recommendProjects(Authentication authentication,RedirectAttributes model){
+    public String recommendProjects(@PathVariable int id,Authentication authentication, Model model){
     	Set<Topic> topics=topicService.findBySection(sectionService.findByName("Projects").getId());
     	HashMap<Integer,List<String>> projects= new HashMap<Integer,List<String>>();
     	for (Topic topic: topics){
@@ -112,11 +112,33 @@ public class SectionController {
     	 System.out.println("termtfidf Map: " + Arrays.toString(termsTFIDF.entrySet().toArray()));
     	LinkedHashMap <Integer,Double> result=hsort.sortHashMap();
     	
-    	return "redirect:/section/" + sectionService.findByName("Projects").getId();
+    	List<Topic>recommendedProjects= new ArrayList<Topic>();
+    	for (Integer projectId : result.keySet()){
+    		if (result.get(projectId)>0.1 && !projectId.equals(99999999)){
+    			Topic topic = topicService.findOne(projectId);
+    			recommendedProjects.add(topic);
+    	    	System.out.println(topic.getTitle());
+    		}
+    	}
+    	Section projectSection = sectionService.findOne(id);
+    	System.out.println(projectSection.getName());
+    	
+    	model.addAttribute("section",projectSection);
+    	
+    	model.addAttribute("recommendedProjects",recommendedProjects);
+    	return "recommended_projects";
     }
     @RequestMapping(value = "chat", method = RequestMethod.GET)
     public String getChat(Authentication authentication,Model model) {
     	User user = userService.findByUsername(authentication.getName());
+    	 model.addAttribute("user",user);
+        return "chat";
+    }
+    @RequestMapping(value = "apply/{id}", method = RequestMethod.GET)
+    public String applyForProjectById(@PathVariable int id,Authentication authentication,Model model) {
+    	User user = userService.findByUsername(authentication.getName());
+    	Topic project= topicService.findOne(id);
+    	model.addAttribute("project",project);
     	 model.addAttribute("user",user);
         return "chat";
     }
