@@ -9,19 +9,23 @@ import java.util.stream.Collectors;
 
 public class HashMapSort<Integer,Double> {
 
-	private HashMap <Integer,Double> mapToSort;
+	private HashMap<java.lang.Integer, java.lang.Double> mapToSort;
 
-	public HashMapSort(HashMap<Integer, Double> mapToSort) {
+	public HashMapSort(HashMap<java.lang.Integer, java.lang.Double> mapToSort) {
 		super();
 		this.mapToSort = mapToSort;
 	}
 	
-	public void sortHashMap(){
+	@SuppressWarnings("rawtypes")
+	public LinkedHashMap<Integer,Double> sortHashMap(){
 		 System.out.println("Initial Map: " + Arrays.toString(mapToSort.entrySet().toArray()));
 		 /*	Map<Integer,Double> sortedMap=(mapToSort.entrySet().stream()).sorted().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1,e2) -> e1, LinkedHashMap::new));
 		System.out.println("Sorted Map: " + Arrays.toString(sortedMap.entrySet().toArray()));
 	*/
-		 Map<Integer,Double> sortedMap= new TreeMap(new ValueComparator((HashMap<java.lang.Integer, java.lang.Double>) mapToSort));
+		 @SuppressWarnings({ "unchecked", "rawtypes", "rawtypes", "rawtypes" })
+		LinkedHashMap<Integer,Double> sortedMap= (LinkedHashMap<Integer, Double>) ValueComparator.sortByValue(mapToSort);
+		 
 		 System.out.println("Sorted Map: " + Arrays.toString(sortedMap.entrySet().toArray()));
+		 return sortedMap;
 	}
 }

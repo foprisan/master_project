@@ -8,6 +8,7 @@ import com.github.dawidstankiewicz.forum.service.SectionService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -109,7 +110,8 @@ public class SectionController {
     	HashMapSort hsort = new HashMapSort(recommender.getRecommendations());
     	HashMap<Integer, HashMap<String, Double>> termsTFIDF=recommender.getTFIDFforProjectTerms();
     	 System.out.println("termtfidf Map: " + Arrays.toString(termsTFIDF.entrySet().toArray()));
-    	hsort.sortHashMap();
+    	LinkedHashMap <Integer,Double> result=hsort.sortHashMap();
+    	
     	return "redirect:/section/" + sectionService.findByName("Projects").getId();
     }
     @RequestMapping(value = "chat", method = RequestMethod.GET)
