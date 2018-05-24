@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
+import org.springframework.boot.autoconfigure.mustache.web.MustacheView;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -20,9 +21,7 @@ import com.github.dawidstankiewicz.forum.controller.model.ChatMessage;
 import com.pandorabots.api.MagicParameters;
 import com.pandorabots.api.PandorabotsAPI;
 
-/**
- * Created by rajeevkumarsingh on 24/07/17.
- */
+
 @Controller
 public class ChatController {
 
@@ -42,7 +41,7 @@ public class ChatController {
     			mp.isDebug());
     	String response="";
     	try {
-			response=pbAPI.talk("test", "filip1", chatMessage.getContent());
+			response=pbAPI.talk("master", "filip1", chatMessage.getContent());
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,4 +72,40 @@ public class ChatController {
         return chatMessage;
     }
 
+    @MessageMapping("/chat.specificProjectApplication")
+    @SendTo("/topic/public")
+    public ChatMessage specificProjectApplication (@Payload ChatMessage chatMessage,SimpMessageHeaderAccessor headerAccessor){
+    	ChatMessage cm=new ChatMessage();
+    	String response="";
+    	
+    	MagicParameters mp = new MagicParameters();
+    	PandorabotsAPI pbAPI = new  PandorabotsAPI(mp.getHostName(), mp.getAppId(), mp.getUserKey(),
+    			mp.isDebug());
+    	
+    	try {
+			response=pbAPI.talk("master", chatMessage.getSender(), chatMessage.getContent());
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    
+    	
+    	cm.setType(ChatMessage.MessageType.CHAT);
+    	cm.setSender("chatbot");
+    	cm.setContent(response);
+        return cm;
+    }
 }

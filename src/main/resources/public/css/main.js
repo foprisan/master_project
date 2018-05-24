@@ -10,7 +10,7 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
-
+var projectId = null;
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -18,7 +18,7 @@ var colors = [
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
-    console.log(5 + 6);
+    projectId	= document.querySelector('#projectId').value.trim();
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -28,6 +28,7 @@ function connect(event) {
 
         stompClient.connect({}, onConnected, onError);
     }
+    
     event.preventDefault();
 }
 
@@ -45,6 +46,8 @@ function onConnected() {
         {},
         JSON.stringify({sender: "chatbot", type: 'JOIN'})
     )
+   
+   
     connectingElement.classList.add('hidden');
 }
 

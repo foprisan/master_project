@@ -1,6 +1,5 @@
-/**
- * Created by Dawid Stankiewicz on 3 Jul 2016
- */
+
+ 
 package com.github.dawidstankiewicz.forum.entity.repository;
 
 import com.github.dawidstankiewicz.forum.entity.User;

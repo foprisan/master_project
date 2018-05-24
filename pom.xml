@@ -16,7 +16,21 @@
   </properties>
 
   <dependencyManagement>
+   
     <dependencies>
+    
+    <dependency>
+    <groupId>com.github.spullara.mustache.java</groupId>
+    <artifactId>compiler</artifactId>
+    <version>0.9.4</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.github.jknack/handlebars -->
+<dependency>
+    <groupId>com.github.jknack</groupId>
+    <artifactId>handlebars</artifactId>
+    <version>4.0.6</version>
+</dependency>
+
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
