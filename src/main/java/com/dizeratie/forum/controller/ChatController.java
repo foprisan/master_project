@@ -163,7 +163,7 @@ public class ChatController {
     		projectSkill.add(term);
     	
     	}
-    	String content=response+projectSkill.get(0) +", " + projectSkill.get(1);
+    	String content=response+projectSkill.get(0) +", " + projectSkill.get(1)+". Would you like to start?";
     
     	
     	cm.setType(ChatMessage.MessageType.CHAT);
