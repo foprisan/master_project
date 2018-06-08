@@ -47,7 +47,10 @@ function onConnected() {
         JSON.stringify({sender: "chatbot", type: 'JOIN'})
     )
    
-   
+    if (projectId !== null ) {
+    	stompClient.send("/app/chat.specificProjectApplication",{},
+    			JSON.stringify({sender:username,type:'JOIN',content:projectId}))
+    }
     connectingElement.classList.add('hidden');
 }
 
