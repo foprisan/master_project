@@ -69,26 +69,17 @@ public class ChatController {
     	String response="";
     	try {
 			response=pbAPI.talk("master", chatMessage.getSender(), chatMessage.getContent());
-		} catch (ClientProtocolException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+			response="Sorry , i am unable to process your request at the moment. Please come back and try again later";
+		} 
     	
     	ChatMessage cm=new ChatMessage();
     	cm.setType(ChatMessage.MessageType.CHAT);
     	cm.setSender("chatbot");
     	cm.setContent(response);
-    	//comentaaas
+    
         return cm;
     }
     

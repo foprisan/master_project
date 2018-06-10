@@ -26,8 +26,9 @@
                                     class="right waves-effect waves-light btn"></a>    
                         <a sec:authorize="hasAnyAuthority('ADMIN','HEAD_ADMIN')" th:href="@{/topic/new}" th:text="#{page.section.new.topic}" 
                         class="right waves-effect waves-light btn"></a>
-                           <a sec:authorize="hasAnyAuthority('USER')"   th:href="@{/section/chat}" th:text="#{page.section.chat}"
+                  <!--           <a sec:authorize="hasAnyAuthority('USER')"   th:href="@{/section/chat}" th:text="#{page.section.chat}"
                                     class="right waves-effect waves-light btn"></a> 
+                    -->
                     </div>
                 </div>
                 <div class="divider"></div>
