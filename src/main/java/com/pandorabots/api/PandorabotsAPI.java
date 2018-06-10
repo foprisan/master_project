@@ -536,7 +536,7 @@ public class PandorabotsAPI {
 			boolean recent) throws ClientProtocolException, IOException,
 			JSONException, URISyntaxException {
 		URI uri = talkUri(botName);
-		Log("Talk botName=" + botName + " input=\"" + input + "\"" + " uri="
+		System.out.println("Talk botName=" + botName + " input=\"" + input + "\"" + " uri="
 				+ uri);
 		List<NameValuePair> params = baseParams();
 		params.add(new BasicNameValuePair("input", input));
@@ -558,7 +558,7 @@ public class PandorabotsAPI {
 		String response = Request.Post(uri).bodyForm(params).execute()
 				.returnContent().asString();
 		JSONObject jObj = new JSONObject(response);
-		
+		System.out.println(jObj);
 		JSONArray jArray = jObj.getJSONArray("responses");
 		String responses = "";
 		for (int i = 0; i < jArray.length(); i++) {

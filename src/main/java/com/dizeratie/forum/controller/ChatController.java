@@ -33,6 +33,7 @@ import com.dizeratie.forum.service.TopicService;
 import com.dizeratie.forum.service.UserService;
 import com.dizeratie.forum.tools.HashMapSort;
 import com.dizeratie.forum.tools.Recommender;
+import com.dizeratie.forum.tools.SendMail;
 import com.pandorabots.api.MagicParameters;
 import com.pandorabots.api.PandorabotsAPI;
 
@@ -74,13 +75,41 @@ public class ChatController {
 			e.printStackTrace();
 			response="Sorry , i am unable to process your request at the moment. Please come back and try again later";
 		} 
-    	
     	ChatMessage cm=new ChatMessage();
     	cm.setType(ChatMessage.MessageType.CHAT);
     	cm.setSender("chatbot");
     	cm.setContent(response);
     
+    	if (response.contains("Looks like you finished your tests")){
+    		try {
+    			cm.setType(ChatMessage.MessageType.END);
+    			String projectId=response.substring(response.lastIndexOf('=')+1, response.lastIndexOf('=')+2);
+    			String projectTitle=topicService.findOne(Integer.parseInt(projectId)).getTitle();
+    			String userName=userService.findByUsername(chatMessage.getSender()).getInfo().getName() +" "
+    					+ userService.findByUsername(chatMessage.getSender()).getInfo().getLastName();
+    			String emailText="Hello,\nThe applicant "+userName+" has completed his application for the project "+projectTitle;
+				emailText=emailText+"Here is a transcript of his conversation \n\n"+pbAPI.talk("master",chatMessage.getSender(),"dialog history");
+				String subject="Application of user "+userName+" for project "+ projectTitle;
+				String adminAdress=userService.findByUsername("admin").getEmail();
+				SendMail.sendMail(subject, emailText,adminAdress,  subject,null,"chatbot_fils@masterproject");
+					
+			} catch (JSONException | IOException | URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
         return cm;
+    }
+    
+    
+    @MessageMapping("/chat.endoftest")
+    @SendTo("/topic/public")
+    public ChatMessage endoftest(@Payload ChatMessage chatMessage) {
+    
+    	ChatMessage cm=sendMessageChatBot(chatMessage);
+    	cm.setType(ChatMessage.MessageType.END);
+    	return cm;
     }
     
     
@@ -104,7 +133,7 @@ public class ChatController {
     			mp.isDebug());
     	
     	try {
-			response=pbAPI.talk("master", chatMessage.getSender(), "I want to apply for project 1");
+			response=pbAPI.talk("master", chatMessage.getSender(), "I want to apply for project "+chatMessage.getContent());
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -161,7 +190,7 @@ public class ChatController {
     		
     	}
     	
-    	String content=" : "+response+projectSkill.get(0) +", " + projectSkill.get(1)+". Would you like to start?";
+    	String content=response+" : "+projectSkill.get(0) +", " + projectSkill.get(1)+". Would you like to start?";
     
     	
     	cm.setType(ChatMessage.MessageType.CHAT);

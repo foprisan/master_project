@@ -18,7 +18,8 @@ var colors = [
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
-    projectId	= document.querySelector('#projectId').value.trim();
+    projectId	= document.querySelector('#projectIdent').value.trim();
+    console.log(projectId);
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -51,6 +52,8 @@ function onConnected() {
     	stompClient.send("/app/chat.specificProjectApplication",{},
     			JSON.stringify({sender:username,type:'JOIN',content:projectId}))
     }
+    window.setTimeout(endtest,1800000);
+    //1800000
     connectingElement.classList.add('hidden');
 }
 
@@ -93,7 +96,9 @@ function onMessageReceived(payload) {
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
-    } else {
+    } 
+    
+    else {
         messageElement.classList.add('chat-message');
 
         var avatarElement = document.createElement('i');
@@ -117,8 +122,14 @@ function onMessageReceived(payload) {
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
+    if (message.type === 'END'){
+    	 window.setTimeout(backPage,3000);
+    	
+    }
 }
-
+function backPage(){
+	history.back();
+}
 
 function getAvatarColor(messageSender) {
     var hash = 0;
@@ -129,7 +140,20 @@ function getAvatarColor(messageSender) {
     var index = Math.abs(hash % colors.length);
     return colors[index];
 }
+function endtest(){
+	 var messageContent ="TIME HAS ENDED"
+		console.log("function on")
+	    if(messageContent && stompClient) {
+	        var chatMessage = {
+	            sender: username,
+	            content: messageContent,
+	            type: 'CHAT'
+	        };
 
+	        stompClient.send("/app/chat.endoftest", {}, JSON.stringify(chatMessage));
+	     
+	   }
+}
 usernameForm.addEventListener('submit', connect, true)
 
 messageForm.addEventListener('submit', sendMessage, true)
