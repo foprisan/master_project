@@ -14,7 +14,9 @@ public class TFIDFCalculator {
             if (term.equalsIgnoreCase(word))
                 result++;
         }
-        if (result>0){
+        
+      
+       if (result>0){
         	return 1 +Math.log(result);
             
         }else {
@@ -37,7 +39,11 @@ public class TFIDFCalculator {
                 }
             }
         }
-        return Math.log(docs.size() / n);
+        int sizeDataset=0;
+        for (List<String> document : docs){
+        	sizeDataset=sizeDataset+document.size();
+        }
+        return Math.log(sizeDataset / n);
     }
 
     /**

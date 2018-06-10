@@ -46,7 +46,7 @@ public class UserInfo implements Serializable {
     @Column(length = 20)
     private String city;
 
-    @Column(length = 150)
+    @Column(length = 300)
     private String aboutMe;
 
     @Column(length = 50)

@@ -74,6 +74,17 @@ public class Recommender {
 			
 		
 		}
+		for (Integer projectKey:allResultsForTopicsByTerms.keySet()){
+			HashMap<String,Double> termtfidfproject=allResultsForTopicsByTerms.get(projectKey);
+			double sum=0;
+			for (String termKey: termtfidfproject.keySet()){
+				sum=sum+Math.pow(termtfidfproject.get(termKey), 2);
+			}
+			sum=Math.sqrt(sum);
+			for (String termKey: termtfidfproject.keySet()){
+				termtfidfproject.put(termKey, termtfidfproject.get(termKey)/sum);
+			}
+		}
 		return allResultsForTopicsByTerms;
 	}
 	public HashMap<Integer,Double> getRecommendations () {
@@ -103,6 +114,17 @@ public class Recommender {
 			allResultsForTopicsByTerms.put(projectId, termTFIDF);
 			
 		
+		}
+		for (Integer projectKey:allResultsForTopicsByTerms.keySet()){
+			HashMap<String,Double> termtfidfproject=allResultsForTopicsByTerms.get(projectKey);
+			double sum=0;
+			for (String termKey: termtfidfproject.keySet()){
+				sum=sum+Math.pow(termtfidfproject.get(termKey), 2);
+			}
+			sum=Math.sqrt(sum);
+			for (String termKey: termtfidfproject.keySet()){
+				termtfidfproject.put(termKey, termtfidfproject.get(termKey)/sum);
+			}
 		}
 		HashMap<String,Double> termTFIDFforTarget=allResultsForTopicsByTerms.get(99999999);
 		for (Integer projectId : projects.keySet()){

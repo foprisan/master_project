@@ -68,7 +68,7 @@ public class ChatController {
     			mp.isDebug());
     	String response="";
     	try {
-			response=pbAPI.talk("master", "filip1", chatMessage.getContent());
+			response=pbAPI.talk("master", chatMessage.getSender(), chatMessage.getContent());
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -159,11 +159,18 @@ public class ChatController {
     	
     	System.out.println("Sorted map for project : " + projectId+"Terms :"+sortedResult.entrySet().toArray());
     	List<String> projectSkill = new ArrayList<String>();
+    	List<String> acceptedSkills= Arrays.asList("java c sql accounting".split(" "));
+    
     	for (String term : sortedResult.keySet()){
-    		projectSkill.add(term);
-    	
+    		boolean containsSearchStr = acceptedSkills.stream().filter(s -> s.equalsIgnoreCase(term)).findFirst().isPresent();
+    		
+    		if(containsSearchStr){
+    			projectSkill.add(term);
+    		}
+    		
     	}
-    	String content=response+projectSkill.get(0) +", " + projectSkill.get(1)+". Would you like to start?";
+    	
+    	String content=" : "+response+projectSkill.get(0) +", " + projectSkill.get(1)+". Would you like to start?";
     
     	
     	cm.setType(ChatMessage.MessageType.CHAT);
