@@ -1,5 +1,5 @@
 /**
- * Created by Dawid Stankiewicz on 17.07.2016
+ *  on 17.04.2018
  */
 package com.dizeratie.forum.entity;
 

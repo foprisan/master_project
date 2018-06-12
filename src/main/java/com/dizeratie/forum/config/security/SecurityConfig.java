@@ -1,6 +1,4 @@
-/**
- * Created by Dawid Stankiewicz on 10.07.2016
- */
+
 package com.dizeratie.forum.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;

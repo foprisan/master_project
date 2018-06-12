@@ -1,6 +1,4 @@
-/**
- * Created by Dawid Stankiewicz on 30.07.2016
- */
+
 package com.dizeratie.forum.controller.form;
 
 import javax.validation.constraints.Size;

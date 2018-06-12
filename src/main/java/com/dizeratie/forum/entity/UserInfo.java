@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 /**
- * Created by Dawid Stankiewicz on 03.08.2017.
+ *  on 03.08.2017.
  */
 
 @Entity

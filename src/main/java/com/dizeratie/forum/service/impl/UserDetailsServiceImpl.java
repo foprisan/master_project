@@ -15,7 +15,7 @@ import com.dizeratie.forum.entity.User;
 import com.dizeratie.forum.service.UserService;
 
 /**
- * Created by Dawid Stankiewicz on 02.08.2017.
+ *  on 02.08.2017.
  */
 
 @Service

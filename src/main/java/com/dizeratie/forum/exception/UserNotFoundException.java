@@ -1,5 +1,5 @@
 /**
- * Created by Dawid Stankiewicz on 29.07.2016
+ * 
  */
 package com.dizeratie.forum.exception;
 
