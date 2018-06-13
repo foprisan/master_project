@@ -1,6 +1,4 @@
-/**
- *  on 3 Jul 2016
- */
+
 package com.dizeratie.forum.entity;
 
 import java.io.Serializable;
@@ -42,11 +40,7 @@ public class User implements Serializable {
     private boolean active;
     @Column(length=500,nullable=true)
     
-    @ManyToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinTable(name= "skillsOfUser",
-    	joinColumns= @JoinColumn(name="user",referencedColumnName="id"),
-    	inverseJoinColumns=@JoinColumn(name="skills",referencedColumnName="id"))
-    private Set<Skill> skills;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "rolesOfUser",

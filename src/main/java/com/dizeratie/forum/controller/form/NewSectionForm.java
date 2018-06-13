@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.dizeratie.forum.controller.form;
 
 import javax.validation.constraints.Size;

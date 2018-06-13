@@ -1,6 +1,4 @@
-/**
- *  on 04.08.2016
- */
+
 package com.dizeratie.forum.controller.model;
 
 import java.util.Set;

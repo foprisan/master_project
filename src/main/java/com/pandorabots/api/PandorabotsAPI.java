@@ -26,17 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Pandorabots API Class.
- * <p>
- * Created by User on 6/25/2014.<br>
- * See: <a href="https://developer.pandorabots.com/docs">Pandorabots API
- * Documentation</a><br>
- * </p>
- * 
- * @author Richard Wallace
- * @version 0.0.9
- */
+
 public class PandorabotsAPI {
 	private String host = null;
 	private String userKey = null;

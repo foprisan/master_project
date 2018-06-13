@@ -1,6 +1,4 @@
-/**
- *  on 23.04.2018
- */
+
 package com.dizeratie.forum.controller;
 
 import javax.servlet.http.HttpServletRequest;

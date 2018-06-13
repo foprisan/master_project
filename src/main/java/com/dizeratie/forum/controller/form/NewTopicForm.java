@@ -1,6 +1,4 @@
-/**
- *  on 28.04.2018
- */
+
 package com.dizeratie.forum.controller.form;
 
 import javax.validation.constraints.Min;

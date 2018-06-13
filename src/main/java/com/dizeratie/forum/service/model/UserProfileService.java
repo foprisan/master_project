@@ -1,6 +1,4 @@
-/**
- *  on 04.08.2016
- */
+
 package com.dizeratie.forum.service.model;
 
 import com.dizeratie.forum.controller.model.UserProfile;

@@ -1,6 +1,4 @@
-/**
- *  on 19.04.2018
- */
+
 package com.dizeratie.forum.controller;
 
 import java.util.ArrayList;

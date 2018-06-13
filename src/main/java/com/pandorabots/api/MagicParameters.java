@@ -9,37 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-/**
- * Global storage for Magic Parameters associated with PandorabotsAPI.
- * <p>
- * Created by User on 7/10/2014.<br>
- * <ul>
- * <li>One need to create a parameter file called config.txt in the directory
- * where the Java program runs.
- * <li>The parameters file config.txt should contain one parameter per line,
- * with the format parametername:value e.g.
- * <table>
- * <tr>
- * <td>user_key:f0123456789abcdef0123456789abcde</td>
- * </tr>
- * <tr>
- * <td>app_id:1234567890123</td>
- * </tr>
- * <tr>
- * <td>hostname:aiaas.pandorabots.com</td>
- * </tr>
- * <tr>
- * <td>debug:true</td>
- * </tr>
- * </table>
- * <li>The user_key and app_id are provided at developer.pandorabots.com as
- * "User Key" and "Application ID respectively.
- * </ul>
- * </p>
- * 
- * @author Richard Wallace
- * @since 0.0.1
- */
+
 public class MagicParameters {
 	/** Version. */
 	private String version = "0.0.6";

@@ -1,6 +1,4 @@
-/**
- *  on 05.08.2016
- */
+
 package com.dizeratie.forum.controller.form;
 
 import java.text.ParseException;

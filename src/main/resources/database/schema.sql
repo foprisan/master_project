@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `forum` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `forum`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+)
 --
 -- Host: localhost    Database: forum
 -- ------------------------------------------------------
@@ -163,4 +163,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-07 11:49:00
+

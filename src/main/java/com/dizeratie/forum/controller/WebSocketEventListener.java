@@ -15,9 +15,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import com.dizeratie.forum.controller.model.ChatMessage;
 
-/**
- * Created by rajeevkumarsingh on 25/07/17.
- */
+
 @Component
 public class WebSocketEventListener {
 

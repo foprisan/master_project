@@ -1,6 +1,4 @@
-/**
- *  on 22.04.2018
- */
+
 package com.dizeratie.forum.entity.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

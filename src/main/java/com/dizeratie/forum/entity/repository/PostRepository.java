@@ -1,7 +1,4 @@
-/**
- *  on 18.04.2018
- */
-package com.dizeratie.forum.entity.repository;
+kage com.dizeratie.forum.entity.repository;
 
 import java.util.Set;
 

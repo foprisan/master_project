@@ -14,9 +14,6 @@ import com.dizeratie.forum.entity.Role;
 import com.dizeratie.forum.entity.User;
 import com.dizeratie.forum.service.UserService;
 
-/**
- *  on 02.08.2017.
- */
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

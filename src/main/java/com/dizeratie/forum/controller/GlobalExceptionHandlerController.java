@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.dizeratie.forum.controller;
 
 import org.springframework.http.HttpStatus;

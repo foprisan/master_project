@@ -1,6 +1,4 @@
-/**
- *  on 3 Jul 2016
- */
+
 package com.dizeratie.forum.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dizeratie.forum.service.PostService;
 import com.dizeratie.forum.service.SectionService;
-import com.dizeratie.forum.service.SkillService;
 import com.dizeratie.forum.service.TopicService;
 
 
@@ -29,8 +26,7 @@ public class HomeController {
     @Autowired
     private PostService postService;
     
-    @Autowired
-    private SkillService skillService;
+
     
     @RequestMapping(value = { "/",
                               "/home" })

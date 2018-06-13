@@ -1,6 +1,4 @@
-/**
- *  on 17.04.2018
- */
+
 package com.dizeratie.forum.service;
 
 import java.util.List;

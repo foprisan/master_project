@@ -1,6 +1,4 @@
-/**
- *  on 04.08.2016
- */
+
 package com.dizeratie.forum.service.model.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;

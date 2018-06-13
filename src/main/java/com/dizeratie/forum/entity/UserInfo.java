@@ -10,9 +10,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
-/**
- *  on 03.08.2017.
- */
+
 
 @Entity
 public class UserInfo implements Serializable {

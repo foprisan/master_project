@@ -1,6 +1,4 @@
-/**
- *  on 10.04.2018
- */
+
 package com.dizeratie.forum.controller;
 
 import java.io.File;

@@ -1,6 +1,4 @@
-/**
- *  on 11.04.2018
- */
+
 package com.dizeratie.forum.service.impl;
 
 import java.util.HashSet;

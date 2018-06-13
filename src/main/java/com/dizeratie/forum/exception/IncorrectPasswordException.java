@@ -1,6 +1,4 @@
-/**
- *  on 06.08.2016
- */
+
 package com.dizeratie.forum.exception;
 
 import org.springframework.http.HttpStatus;
